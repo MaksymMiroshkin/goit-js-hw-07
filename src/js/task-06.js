@@ -1,16 +1,16 @@
-const inputRef = document.querySelector("#validation-input");
-inputRef.addEventListener("focus", focusInputRef);
-function focusInputRef(event) {
-  const inputLength = Number(event.target.dataset.length);
-  const inputValue = event.target.value.length;
-  if (inputLength === inputValue) {
-    inputRef.classList.add("valid");
-    inputRef.classList.remove("invalid");
+const refs = {
+  input: document.querySelector("input#validation-input"),
+  length: document.querySelector("input#validation-input").dataset.length,
+};
+
+refs.input.addEventListener("blur", onVaildInput);
+
+function onVaildInput(event) {
+  const lengthValue = event.currentTarget.value.length;
+  if (lengthValue == refs.length) {
+    refs.input.classList.add("valid");
+    refs.input.classList.remove("invalid");
   } else {
-    inputRef.classList.remove("valid");
-    inputRef.classList.add("invalid");
+    refs.input.classList.add("invalid");
   }
-  console.log(inputLength);
-  console.log(inputValue);
-  console.log(inputLength === inputValue);
 }
